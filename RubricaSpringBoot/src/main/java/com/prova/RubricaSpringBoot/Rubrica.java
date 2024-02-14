@@ -6,16 +6,18 @@ import java.util.logging.Logger;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class Rubrica {
+public class RubricaController {
 
-	private final static Logger LOGGER = Logger.getLogger(Rubrica.class.getName());
+	private final static Logger LOGGER = Logger.getLogger(RubricaController.class.getName());
 
 	List<Contatto> listaContatti;
 
-	public Rubrica() {
+	public RubricaController() {
 		listaContatti = new ArrayList<Contatto>();
 		aggiungiContatto("Luca", "Gialli", "3491212121");
 		aggiungiContatto("Mario", "Rossi", "3385353535");
@@ -24,9 +26,9 @@ public class Rubrica {
 		aggiungiContatto("Maria", "Bianchi", "334555585");
 	}
 
-	@GetMapping("/aggiungicontatto/{nome}/{cognome}/{numero}")
-	public Contatto aggiungiContatto(@PathVariable String nome, @PathVariable String cognome,
-			@PathVariable String numero) {
+	@PostMapping("/aggiungicontatto")
+	public Contatto aggiungiContatto(@RequestParam("nome") String nome, @RequestParam("cognome") String cognome,
+			@RequestParam("numero") String numero) {
 		Contatto contatto = new Contatto(nome, cognome, numero);
 		listaContatti.add(contatto);
 		LOGGER.info("inserito contatto" + contatto);
@@ -44,8 +46,8 @@ public class Rubrica {
 		return listaContatti;
 	}
 
-	@GetMapping("/cercacontattopercognome/{cognome}")
-	public List<Contatto> cercaContattoPerCognome(@PathVariable String cognome) {
+	@GetMapping("/cercacontattipercognome/{cognome}")
+	public List<Contatto> cercaContattiPerCognome(@PathVariable String cognome) {
 		List<Contatto> listaBreveContatti = new ArrayList<Contatto>();
 		for (int i = 0; i < listaContatti.size(); i++) {
 			Contatto contatto = listaContatti.get(i);
