@@ -4,6 +4,7 @@ public class Contatto {
 	String nome;
 	String cognome;
 	String numero;
+
 	public Contatto(String nome, String cognome, String numero) {
 		super();
 		this.nome = nome;

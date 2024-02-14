@@ -1,60 +1,58 @@
 package com.prova.RubricaSpringBoot;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 
 @RestController
 public class Rubrica {
-	
-	ArrayList<Contatto> listaContatti;
-	
+
+	private final static Logger LOGGER = Logger.getLogger(Rubrica.class.getName());
+
+	List<Contatto> listaContatti;
+
 	public Rubrica() {
-			listaContatti=new ArrayList<Contatto>();
-			aggiungiContatto("Luca", "Gialli", "3491212121");
-			aggiungiContatto("Mario", "Rossi", "3385353535");
-			aggiungiContatto("Guido", "Verdi", "3316464646");
-			aggiungiContatto("Andrea", "Bianchi", "33385858585");
+		listaContatti = new ArrayList<Contatto>();
+		aggiungiContatto("Luca", "Gialli", "3491212121");
+		aggiungiContatto("Mario", "Rossi", "3385353535");
+		aggiungiContatto("Guido", "Verdi", "3316464646");
+		aggiungiContatto("Andrea", "Bianchi", "33385858585");
+		aggiungiContatto("Maria", "Bianchi", "334555585");
 	}
 
-	public void aggiungiContatto(Contatto contatto) {
+	@GetMapping("/aggiungicontatto/{nome}/{cognome}/{numero}")
+	public Contatto aggiungiContatto(@PathVariable String nome, @PathVariable String cognome,
+			@PathVariable String numero) {
+		Contatto contatto = new Contatto(nome, cognome, numero);
 		listaContatti.add(contatto);
-		System.out.println("inserito contatto");
-
+		LOGGER.info("inserito contatto" + contatto);
+		return contatto;
 	}
 
-	@PostMapping("/aggiungiContatto")
-	public void aggiungiContatto(@RequestBody String nome, String cognome, String numero) {
-		aggiungiContatto(new Contatto(nome, cognome, numero));
+	public Contatto aggiungiContatto(Contatto contatto) {
+		listaContatti.add(contatto);
+		LOGGER.info("inserito contatto" + contatto);
+		return contatto;
 	}
-	
-	
+
 	@GetMapping("/stampacontatti")
-	public String stampaContatti() {
-		String stampata = "";
-		for (int i = 0; i < listaContatti.size(); i++) {
-			Contatto contatto = listaContatti.get(i);
-			stampata = stampata + contatto.toString();
-		}
-		System.out.println(stampata);
-		return stampata;
+	public List<Contatto> stampaContatti() {
+		return listaContatti;
 	}
-	
+
 	@GetMapping("/cercacontattopercognome/{cognome}")
-	public String cercaContattoPerCognome(@PathVariable String cognome) {
-		String stampata = "";
+	public List<Contatto> cercaContattoPerCognome(@PathVariable String cognome) {
+		List<Contatto> listaBreveContatti = new ArrayList<Contatto>();
 		for (int i = 0; i < listaContatti.size(); i++) {
 			Contatto contatto = listaContatti.get(i);
 			if (contatto.getCognome().equals(cognome)) {
-				stampata = stampata + contatto.toString();
+				listaBreveContatti.add(contatto);
 			}
 		}
-		System.out.println(stampata);
-		return stampata;
+		return listaBreveContatti;
 	}
 }
