@@ -25,7 +25,7 @@ public class RubricaController {
 		aggiungiContatti("Andrea", "Bianchi", "33385858585");
 		aggiungiContatti("Maria", "Bianchi", "334555585");
 	}
-
+	
 	@PostMapping("/aggiungicontatti")
 	public Contatto aggiungiContatti(@RequestParam("nome") String nome, @RequestParam("cognome") String cognome,
 			@RequestParam("numero") String numero) {
