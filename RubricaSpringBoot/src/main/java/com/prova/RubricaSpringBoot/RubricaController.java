@@ -17,7 +17,7 @@ public class RubricaController {
     private final static Logger LOGGER = Logger.getLogger(RubricaController.class.getName());
 
     @Autowired
-    private RubricaService rubricaService;
+    private RubricaServiceInterface rubricaService; // Modifica qui per iniettare l'interfaccia
 
     @PostMapping("/aggiungicontatti")
     public Contatto aggiungiContatti(@RequestParam("nome") String nome, @RequestParam("cognome") String cognome,
