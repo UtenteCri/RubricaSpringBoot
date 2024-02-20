@@ -1,4 +1,4 @@
-package com.prova.RubricaSpringBoot;
+package com.exprivia.RubricaSpringBootApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

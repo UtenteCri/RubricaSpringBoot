@@ -1,4 +1,4 @@
-package com.prova.RubricaSpringBoot;
+package com.exprivia.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.exprivia.entity.Contatto;
+import com.exprivia.service.RubricaServiceInterface;
 
 @RestController
 public class RubricaController {

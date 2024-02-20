@@ -1,4 +1,4 @@
-package com.prova.RubricaSpringBoot;
+package com.exprivia.entity;
 
 public class Contatto {
 	String nome;

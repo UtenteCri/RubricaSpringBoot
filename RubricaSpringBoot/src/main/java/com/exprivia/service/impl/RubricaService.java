@@ -1,6 +1,10 @@
-package com.prova.RubricaSpringBoot;
+package com.exprivia.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import com.exprivia.entity.Contatto;
+import com.exprivia.service.RubricaServiceInterface;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
