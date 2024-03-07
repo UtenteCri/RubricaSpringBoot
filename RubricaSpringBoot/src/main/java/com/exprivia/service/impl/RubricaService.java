@@ -41,5 +41,12 @@ public class RubricaService implements InterfaceRubricaService {
 
         return opt.isPresent() ? Arrays.asList(opt.get()) : new ArrayList<Contatto>();
     }
+    
+    @Override
+    public List<Contatto> cancellaContattiPerCognome(String cognome) {
+        repository.deleteById(cognome);
+        return new ArrayList<Contatto>();
+    }
+
 
 }

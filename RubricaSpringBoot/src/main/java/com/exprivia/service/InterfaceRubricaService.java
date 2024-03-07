@@ -9,4 +9,5 @@ public interface InterfaceRubricaService {
     List<Contatto> stampaContatti();
     List<Contatto> cercaContattiPerCognome(String cognome);
 	Contatto aggiungiContatto(Contatto contatto);
+	List<Contatto> cancellaContattiPerCognome(String cognome);
 }

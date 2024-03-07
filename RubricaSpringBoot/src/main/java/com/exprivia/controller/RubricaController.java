@@ -38,4 +38,9 @@ public class RubricaController {
     public List<Contatto> cercaContattiPerCognome(@PathVariable String cognome) {
         return rubricaService.cercaContattiPerCognome(cognome);
     }
+    
+    @GetMapping("/cancellacontatti/{cognome}")
+    public List<Contatto> cancellaContattiPerCognome(@PathVariable String cognome) {
+        return rubricaService.cancellaContattiPerCognome(cognome);
+    }
 }
